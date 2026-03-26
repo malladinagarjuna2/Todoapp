@@ -222,7 +222,8 @@ trait SlChangeDetail extends js.Object:
   val value: String = js.native
 
 val onSlChange: EventProp[F, SlChangeDetail] =
-  EventProp("sl-change", e => e.asInstanceOf[dom.CustomEvent].detail.asInstanceOf[SlChangeDetail])
+  EventProp("sl-change", e => e.asInstanceOf[dom.CustomEvent].detail.
+  asInstanceOf[SlChangeDetail])
 ```
 
 ### 4. Custom Elements Manifest Parser
@@ -255,7 +256,8 @@ case class CustomElementDeclaration(
   description: Option[String]
 )
 
-case class AttrDef(name: String, fieldName: Option[String], tpe: Option[TypeRef], default: Option[String], description: Option[String])
+case class AttrDef(name: String, fieldName: Option[String], tpe: Option[TypeRef],
+default: Option[String], description: Option[String])
 case class EventDef(name: String, tpe: Option[TypeRef], description: Option[String])
 case class SlotDef(name: String, description: Option[String])
 ```
@@ -285,7 +287,8 @@ object WebComponentGenerator:
     srcManaged: File
   ): IO[List[File]] =
     manifest.modules.flatMap(_.declarations).collect {
-      case ce: CustomElementDeclaration => generateComponent(ce, packageName, srcManaged)
+      case ce: CustomElementDeclaration => generateComponent(ce, packageName,
+      srcManaged)
     }.sequence
 ```
 
